@@ -16,8 +16,12 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var eulerAngles = transform.eulerAngles;
-        eulerAngles.y += speed * Time.deltaTime;
-        transform.eulerAngles = eulerAngles;
+        //var eulerAngles = transform.eulerAngles;
+        //eulerAngles.z += speed * Time.deltaTime;
+        //eulerAngles.y += speed * Time.deltaTime;
+        //eulerAngles.x += speed * Time.deltaTime;
+        //transform.eulerAngles = eulerAngles;
+
+        transform.RotateAround(new Vector3(5, 5, 1), Vector3.up, speed * Time.deltaTime);
     }
 }
