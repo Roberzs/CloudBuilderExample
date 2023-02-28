@@ -3,7 +3,7 @@ name: Build project
 on: 
   push:
     branches:
-      - build
+      - main
 jobs:
   buildForAllSupportedPlatforms:
     name: Build for ${{ matrix.targetPlatform }}
