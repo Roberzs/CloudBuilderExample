@@ -31,6 +31,7 @@ jobs:
         with:
           androidExportType: 'androidAppBundle'
           androidAppBundle: true
+          androidTargetSdkVersion: AndroidApiLevel33
           androidKeystoreName: user.keystore
           androidKeystoreBase64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
           androidKeystorePass: ${{ secrets.ANDROID_KEYSTORE_PASS }}
