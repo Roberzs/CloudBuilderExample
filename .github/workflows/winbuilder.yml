@@ -1,4 +1,4 @@
-name: Build project
+name: Build AAB
 
 on: 
   push:
@@ -29,7 +29,6 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          androidExportType: 'androidAppBundle'
           androidAppBundle: true
           androidTargetSdkVersion: AndroidApiLevel33
           androidKeystoreName: user.keystore
