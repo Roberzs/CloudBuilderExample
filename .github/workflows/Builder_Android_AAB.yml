@@ -1,9 +1,7 @@
 name: Build Android AAB
 
-on: 
-  push:
-    branches:
-      - main
+on:
+  workflow_dispatch: {}
 jobs:
   buildForAllSupportedPlatforms:
     name: Build for ${{ matrix.targetPlatform }}
