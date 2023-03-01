@@ -1,4 +1,4 @@
-name: Build AAB
+name: Build Android AAB
 
 on: 
   push:
