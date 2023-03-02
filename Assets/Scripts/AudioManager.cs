@@ -14,7 +14,11 @@ using UnityEngine;
 // 世界音效:  全局存在多个 根据距离播放例如脚步声之类的音效 
 
 
-public class AudioManager : MonoBehaviour
+
+public delegate void AudAction();
+
+
+public sealed class AudioManager : MonoBehaviour
 {
     /// <summary>
     /// 是否静音初始值【请勿在代码中修改】
@@ -55,7 +59,7 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// 单通道音效播放结束事件
     /// </summary>
-    //public event AudAction SingleSoundEndOfPlayEvent;
+    private event AudAction _singleSoundEndOfPlayEvent;
 
     private AudioSource _backgroundAudio;
     private AudioSource _singleAudio;
@@ -103,7 +107,7 @@ public class AudioManager : MonoBehaviour
             if (!_singleAudio.isPlaying)
             {
                 _singleSoundPlayDetector = false;
-                //SingleSoundEndOfPlayEvent?.Invoke();
+                _singleSoundEndOfPlayEvent?.Invoke();
             }
         }
     }
@@ -364,7 +368,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="clip">音乐剪辑</param>
     /// <param name="isLoop">是否循环</param>
     /// <param name="speed">播放速度</param>
-    public void PlaySingleSound(AudioClip clip, bool isLoop = false, float speed = 1)
+    public void PlaySingleSound(AudioClip clip, bool isLoop = false, float speed = 1, AudAction audAction = null)
     {
         if (_singleAudio.isPlaying)
         {
@@ -375,7 +379,12 @@ public class AudioManager : MonoBehaviour
         _singleAudio.loop = isLoop;
         _singleAudio.pitch = speed;
         _singleAudio.Play();
-        _singleSoundPlayDetector = true;
+        if (audAction != null)
+        {
+            _singleSoundEndOfPlayEvent = audAction;
+            _singleSoundPlayDetector = true;
+        }
+        
     }
     /// <summary>
     /// 暂停播放单通道音效

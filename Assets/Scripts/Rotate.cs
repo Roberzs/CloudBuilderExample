@@ -22,6 +22,6 @@ public class Rotate : MonoBehaviour
         //eulerAngles.x += speed * Time.deltaTime;
         //transform.eulerAngles = eulerAngles;
 
-        transform.RotateAround(new Vector3(0, 1, 0), Vector3.up, speed * Time.deltaTime);
+        transform.RotateAround(Camera.main.transform.position, Vector3.up, speed * Time.deltaTime);
     }
 }
