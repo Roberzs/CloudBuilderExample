@@ -1,0 +1,1 @@
+powershell -command "[convert]::ToBase64String((Get-Content -path %1 -Encoding byte))|out-file %~n1.txt"
